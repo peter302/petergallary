@@ -31,3 +31,7 @@ class Category(models.Model):
         self.save()
     def delete_category(self):
         self.delete()
+
+      @classmethod
+    def update_category(cls, id, value):
+        cls.objects.filter(id=id).update(category_name=value)    
