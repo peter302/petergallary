@@ -34,4 +34,18 @@ class Category(models.Model):
 
       @classmethod
     def update_category(cls, id, value):
-        cls.objects.filter(id=id).update(category_name=value)    
+        cls.objects.filter(id=id).update(category_name=value)
+
+class Image(models.Model):
+    image_name = models.CharField(max_length =60)
+    image_description = models.TextField()
+    location = models.ForeignKey(Location)
+    category = models.ForeignKey(Category)
+    image = models.ImageField(upload_to = 'imgs/')
+
+    def save_image(self):
+        self.save()
+    def delete_image(self):
+        self.delete()
+    class Meta:
+        ordering = ['image_name']          
