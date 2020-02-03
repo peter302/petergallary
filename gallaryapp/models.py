@@ -48,4 +48,29 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
     class Meta:
-        ordering = ['image_name']          
+        ordering = ['image_name']
+
+
+    @classmethod
+    def get_all_images(cls):
+        images = cls.objects.all()
+        return images
+
+
+    @classmethod
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(image=value)
+
+    @classmethod
+    def get_image_by_id(cls,id):
+        image = cls.objects.filter(id= id).all()
+        return image
+
+    @classmethod
+    def filter_by_location(cls,search_term):
+        locations = cls.objects.filter(location__location_name__icontains=search_term)
+        return locations
+    @classmethod
+    def search_by_category(cls,search_term):
+        categories = cls.objects.filter(category__category_name__icontains=search_term)
+        return categories
