@@ -47,6 +47,9 @@ class Image(models.Model):
         self.save()
     def delete_image(self):
         self.delete()
+
+    def __str__(self):
+        return self.image_name
     class Meta:
         ordering = ['image_name']
 
